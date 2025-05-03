@@ -7,8 +7,8 @@ import ast
 
 # Create root window
 root = tk.Tk()
-root.title("Linear Correlation Coefficient Visualizer by AJ")
-root.geometry("2500x1750")
+root.title("Linear Correlation Coefficient Visualizer")
+root.geometry("2400x1350")
 
 # Matplotlib figure and axis
 fig, ax = plt.subplots(figsize=(7, 5))
@@ -87,42 +87,6 @@ r = {r:.4f}
 """
         summary_label.config(text=summary_text)
 
-        if r >= 0.9:
-            r_description = "Very strong positive correlation"
-        elif r >= 0.7:
-            r_description = "Strong positive correlation"
-        elif r >= 0.5:
-            r_description = "Moderate positive correlation"
-        elif r >= 0.3:
-            r_description = "Weak positive correlation"
-        elif r > 0:
-            r_description = "Very weak positive correlation"
-        elif r == 0:
-            r_description = "No correlation"
-        elif r > -0.3:
-            r_description = "Very weak negative correlation"
-        elif r > -0.5:
-            r_description = "Weak negative correlation"
-        elif r > -0.7:
-            r_description = "Moderate negative correlation"
-        elif r > -0.9:
-            r_description = "Strong negative correlation"
-        else:
-            r_description = "Very strong negative correlation"
-
-        interpretation_text = (
-            "  The calculated correlation coefficient.\n" 
-            f" r = {r:.4f}\n"
-            "Interpretation:\n"
-            f"→  {r_description}.\n\n"
-            "Understanding r:\n"
-            "r = 1: Perfect positive linear correlation\n"
-            "r = -1: Perfect negative linear correlation\n"
-            "r = 0: No linear correlation\n\n"
-            "Anatolie Jentimir 2025"
-        )
-        interpretation_label.config(text=interpretation_text)
-
     except Exception as e:
         messagebox.showerror("Error", str(e))
 
@@ -147,8 +111,6 @@ def save_data():
             f.write(table_label.cget("text"))
             f.write("\n")
             f.write(summary_label.cget("text"))
-            f.write("\n")
-            f.write(interpretation_label.cget("text"))
         messagebox.showinfo("Saved", f"Data saved to:\n{file_path}")
 
 def exit_app():
@@ -219,8 +181,5 @@ tk.Label(
     font=("Courier", 20),
     fg="#2c3e50"
 ).pack(pady=(0, 8), padx=5, anchor="w")
-
-interpretation_label = tk.Label(right_panel, text="", bg="#f0f6ff", justify="left", font=("Courier", 20), wraplength=750)
-interpretation_label.pack(pady=(5, 10), padx=5, anchor="w")
 
 root.mainloop()
