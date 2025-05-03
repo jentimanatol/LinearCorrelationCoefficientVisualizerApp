@@ -10,12 +10,13 @@ root = tk.Tk()
 root.title("Linear Correlation Coefficient Visualizer")
 root.geometry("2400x1350")
 
-# Matplotlib figure and axis
+# Matplotlib figure and axis (global so they can be updated)
 fig, ax = plt.subplots(figsize=(7, 5))
 canvas = None
 
 def parse_input_data(data_str):
     try:
+        # Convert string to list of tuples using ast.literal_eval for safety
         return ast.literal_eval(data_str)
     except Exception as e:
         messagebox.showerror("Data Error", f"Invalid data format:\n{e}")
@@ -25,7 +26,7 @@ def compute_and_plot(data):
     global canvas
 
     try:
-        ax.clear()
+        ax.clear()  # Clear previous plot
 
         x_vals = [row[0] for row in data]
         y_vals = [row[1] for row in data]
@@ -44,23 +45,12 @@ def compute_and_plot(data):
         denominator = np.sqrt((n * sum_x2 - sum_x**2) * (n * sum_y2 - sum_y**2))
         r = numerator / denominator if denominator != 0 else 0
 
-        # Scatter plot
-        ax.scatter(x_vals, y_vals, color='blue', s=100, label='Data Points')
-
-        # Regression line
-        m, b = np.polyfit(x_vals, y_vals, 1)
-        regression_line = [m * x + b for x in x_vals]
-        ax.plot(x_vals, regression_line, color='red', label='Best Fit Line')
-
-        # Annotate r value
-        ax.annotate(f'r = {r:.4f}', xy=(0.05, 0.95), xycoords='axes fraction',
-                    fontsize=14, backgroundcolor='white')
-
+        # Plot
+        ax.scatter(x_vals, y_vals, color='blue', s=100)
         ax.set_title("Scatter Plot: Hours Studied vs Test Scores", fontsize=22)
         ax.set_xlabel("Hours Studied", fontsize=18)
         ax.set_ylabel("Test Score", fontsize=18)
         ax.grid(True)
-        ax.legend()
 
         canvas.draw()
 
