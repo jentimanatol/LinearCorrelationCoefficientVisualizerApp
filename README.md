@@ -3,7 +3,7 @@
 ![App Screenshot](screenshots/Screenshot.png)
 
 
-**Download ** [Linear Correlation Coefficient Visualizer v1.2.exe](https://github.com/jentimanatol/LinearCorrelationCoefficientVisualizerApp/releases/tag/v1.2)  
+**Download ** [Linear Correlation Coefficient Visualizer v2.0.exe](https://github.com/jentimanatol/LinearCorrelationCoefficientVisualizerApp/releases/tag/v2.0)  
 **Author:** [@jentimanatol](https://github.com/jentimanatol)  
 **Download:** 👉 [Get Latest Release](https://github.com/jentimanatol/LinearCorrelationCoefficientVisualizerApp/releases)
 

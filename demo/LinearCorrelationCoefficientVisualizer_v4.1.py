@@ -5,6 +5,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 import ast
 
+# Create root window
+root = tk.Tk()
+root.title("Linear Correlation Coefficient Visualizer by AJ")
+root.geometry("2500x1750")
+
+# Matplotlib figure and axis
+fig, ax = plt.subplots(figsize=(7, 5))
+canvas = None
+
 def parse_input_data(data_str):
     try:
         return ast.literal_eval(data_str)
@@ -143,20 +152,7 @@ def save_data():
         messagebox.showinfo("Saved", f"Data saved to:\n{file_path}")
 
 def exit_app():
-    plt.close('all')  # Close all matplotlib figures
     root.destroy()
-
-# Create root window
-root = tk.Tk()
-root.title("Linear Correlation Coefficient Visualizer by AJ")
-root.geometry("2500x1750")
-
-# Set up the window close protocol
-root.protocol("WM_DELETE_WINDOW", exit_app)
-
-# Matplotlib figure and axis
-fig, ax = plt.subplots(figsize=(7, 5))
-canvas = None
 
 # Layout
 top_frame = tk.Frame(root, bg="#e6f0ff", padx=10, pady=5)
@@ -226,8 +222,5 @@ tk.Label(
 
 interpretation_label = tk.Label(right_panel, text="", bg="#f0f6ff", justify="left", font=("Courier", 20), wraplength=750)
 interpretation_label.pack(pady=(5, 10), padx=5, anchor="w")
-
-# Run the initial plot
-load_data_and_plot()
 
 root.mainloop()
